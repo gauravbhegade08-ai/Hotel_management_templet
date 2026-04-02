@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Royal Heritage | Grandeur Redefined</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --royal-maroon: #5D001E; /* A deep, rich Indian red */
+            --maroon-dark: #3a0012;
+            --deep-gold: #C5A059;
+            --bright-gold: #D4AF37;
+            --sand-cream: #FFF9F0;
+            --sand-dark: #F4E8D1;
+            --onyx: #1A1A1B;
+            --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--sand-cream);
+            color: var(--onyx);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Subtle Background Texture (Mandala/Block print feel) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(var(--deep-gold) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(93, 0, 30, 0.98);
+            padding: 15px 60px;
+            border-bottom: 2px solid var(--bright-gold);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            font-family: 'Cinzel Decorative', serif;
+            color: var(--bright-gold);
+            font-size: 2rem;
+            text-decoration: none;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--sand-cream);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+        .nav-links a:hover { color: var(--bright-gold); }
+
+        /* --- HERO SECTION (Parallax Effect) --- */
+        .hero {
+            height: 100vh;
+            /* Authentic Palace Image */
+            background: linear-gradient(rgba(26, 26, 27, 0.6), rgba(93, 0, 30, 0.6)), 
+                        url('https://images.unsplash.com/photo-1582647509711-c8aa8a8b54cf?auto=format&fit=crop&q=80&w=2070') center/cover no-repeat;
+            background-attachment: fixed; /* Creates the Parallax */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            border-bottom: 8px solid var(--bright-gold);
+            position: relative;
+        }
+
+        /* Decorative bottom border for hero */
+        .hero::after {
+            content: '❖ ❖ ❖';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--sand-cream);
+            color: var(--bright-gold);
+            padding: 5px 20px;
+            font-size: 1.5rem;
+            border: 2px solid var(--bright-gold);
+            border-radius: 30px;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            color: var(--bright-gold);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1.5s forwards 0.5s;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.8);
+        }
+
+        .hero p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            max-width: 800px;
+            opacity: 0;
+            animation: fadeUp 1.5s forwards 1s;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.8);
+            color: var(--sand-cream);
+        }
+
+        /* --- GLOBAL SECTION STYLES --- */
+        section { padding: 100px 10%; position: relative; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+
+        .section-header h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.5rem;
+            color: var(--royal-maroon);
+            margin-bottom: 10px;
+        }
+
+        .section-header .divider {
+            display: block;
+            width: 150px;
+            height: 3px;
+            background: var(--bright-gold);
+            margin: 0 auto 20px;
+            position: relative;
+        }
+        
+        /* Decorative element on divider */
+        .section-header .divider::after {
+            content: '♦';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--royal-maroon);
+            font-size: 1.5rem;
+            background: var(--sand-cream);
+            padding: 0 10px;
+        }
+
+        .section-header p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- SCROLL REVEAL ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- THE PALACE (About Section) --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #444;
+        }
+        
+        .about-text p:first-of-type::first-letter {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 4rem;
+            color: var(--royal-maroon);
+            float: left;
+            line-height: 1;
+            padding-right: 15px;
+        }
+
+        .about-img {
+            position: relative;
+            padding: 20px;
+        }
+        
+        /* Traditional Border Frame */
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: 2px solid var(--bright-gold);
+            z-index: 1;
+            transform: translate(15px, 15px);
+        }
+
+        .about-img img {
+            width: 100%;
+            display: block;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        /* --- ROOM CARDS --- */
+        #suites { background-color: #ffffff; }
+
+        .rooms-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+        }
+
+        .room-card {
+            background: var(--sand-cream);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--deep-gold);
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+
+        /* Archway cutout effect on images */
+        .room-img-wrapper {
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            border-bottom: 4px solid var(--royal-maroon);
+        }
+
+        .room-img-wrapper img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s ease;
+        }
+
+        .room-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(93, 0, 30, 0.15);
+            border-color: var(--royal-maroon);
+        }
+
+        .room-card:hover img { transform: scale(1.1); }
+
+        .room-info {
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .room-info h3 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--royal-maroon);
+        }
+
+        .price {
+            color: var(--deep-gold);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* --- EXPERIENCES (Amenities) --- */
+        .experiences-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .exp-card {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border: 1px dashed var(--deep-gold);
+            transition: var(--transition);
+        }
+        
+        .exp-card:hover {
+            background: var(--royal-maroon);
+            color: var(--sand-cream);
+        }
+        
+        .exp-card:hover h3, .exp-card:hover p {
+            color: var(--sand-cream);
+        }
+
+        .exp-icon {
+            font-size: 3rem;
+            color: var(--bright-gold);
+            margin-bottom: 20px;
+        }
+
+        .exp-card h3 {
+            font-family: 'Cinzel Decorative', serif;
+            color: var(--royal-maroon);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+        
+        .exp-card p {
+            color: #666;
+            transition: var(--transition);
+        }
+
+        /* --- COMPLEX BOOKING FORM --- */
+        #book {
+            background: linear-gradient(to bottom, transparent 50%, var(--maroon-dark) 50%);
+            padding-bottom: 150px;
+        }
+
+        .booking-wrap {
+            background: white;
+            padding: 60px 80px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+            border: 8px double var(--bright-gold);
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .booking-wrap::before {
+            content: 'RES';
+            position: absolute;
+            top: -40px; left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 10px 30px;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2rem;
+            color: var(--royal-maroon);
+            border: 2px solid var(--bright-gold);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .form-group { margin-bottom: 25px; }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--royal-maroon);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 18px;
+            border: 1px solid #ccc;
+            border-bottom: 2px solid var(--royal-maroon);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            background: #fdfdfd;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--bright-gold);
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-gold {
+            background: var(--royal-maroon);
+            color: var(--bright-gold);
+            border: 2px solid var(--bright-gold);
+            padding: 22px 40px;
+            text-transform: uppercase;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gold:hover {
+            background: var(--bright-gold);
+            color: var(--royal-maroon);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--maroon-dark);
+            color: var(--sand-cream);
+            padding: 80px 10% 40px;
+            text-align: center;
+            border-top: 2px solid var(--bright-gold);
+        }
+
+        .footer-logo {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.5rem;
+            color: var(--bright-gold);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-details p {
+            margin: 10px 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #d1c4b2;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-grid, .experiences-grid, .form-grid { grid-template-columns: 1fr; }
+            .booking-wrap { padding: 40px 30px; }
+            .hero h1 { font-size: 4rem; }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 20px; }
+            .nav-links { display: none; } /* Add a hamburger menu here later */
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="#" class="logo">HERITAGE</a>
+        <ul class="nav-links">
+            <li><a href="#about">The Palace</a></li>
+            <li><a href="#suites">Suites</a></li>
+            <li><a href="#experiences">Experiences</a></li>
+            <li><a href="#book">Reservations</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>The Royal Heritage</h1>
+        <p>Step into a world of timeless grandeur and experience the true essence of Indian royalty.</p>
+    </header>
+
+    <section id="about">
+        <div class="section-header reveal">
+            <h2>A Legacy in Stone</h2>
+            <div class="divider"></div>
+            <p>Built in 1743, our palace stands as a testament to Rajputana architecture.</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-text reveal">
+                <p>Welcome to a sanctuary where history breathes through every corridor. The Royal Heritage is not merely a hotel; it is a meticulously restored 18th-century palace that once housed nobility.</p>
+                <p>Every courtyard, every hand-painted fresco, and every intricately carved jali screen tells a story of an era where craftsmanship was paramount and hospitality was considered a sacred duty. We invite you to live the legend.</p>
+            </div>
+            <div class="about-img reveal">
+                <img src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&q=80&w=2070" alt="Palace Courtyard">
+            </div>
+        </div>
+    </section>
+
+    <section id="suites">
+        <div class="section-header reveal">
+            <h2>Imperial Suites</h2>
+            <div class="divider"></div>
+            <p>Sanctuaries of absolute comfort, adorned with antique artistry.</p>
+        </div>
+
+        <div class="rooms-container">
+            <div class="room-card reveal">
+                <div class="room-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=2070" alt="Maharaja Suite">
+                </div>
+                <div class="room-info">
+                    <h3>The Maharaja Suite</h3>
+                    <span class="price">₹45,000 / Night</span>
+                    <p>Experience true sovereignty with hand-carved marble baths, private dining pavilions, and gold-leaf ceilings.</p>
+                </div>
+            </div>
+
+            <div class="room-card reveal" style="transition-delay: 0.2s;">
+                <div class="room-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=2070" alt="Rajputana Suite">
+                </div>
+                <div class="room-info">
+                    <h3>Rajputana Deluxe</h3>
+                    <span class="price">₹28,000 / Night</span>
+                    <p>Sun-drenched balconies overlooking the Pichola, featuring authentic silk furnishings and vintage artifacts.</p>
+                </div>
+            </div>
+
+            <div class="room-card reveal" style="transition-delay: 0.4s;">
+                <div class="room-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=2070" alt="Mughal Suite">
+                </div>
+                <div class="room-info">
+                    <h3>Mughal Courtyard</h3>
+                    <span class="price">₹18,500 / Night</span>
+                    <p>Tranquility nestled in the heart of the palace gardens, featuring authentic geometric motifs and a private sit-out.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiences" style="background-color: var(--sand-dark);">
+        <div class="section-header reveal">
+            <h2>Palatial Experiences</h2>
+            <div class="divider"></div>
+            <p>Curated moments that linger in your memory.</p>
+        </div>
+        <div class="experiences-grid">
+            <div class="exp-card reveal">
+                <div class="exp-icon">🪷</div>
+                <h3>Ayurvedic Spa</h3>
+                <p>Rejuvenate your senses with ancient Indian healing therapies utilizing royal essential oils.</p>
+            </div>
+            <div class="exp-card reveal" style="transition-delay: 0.2s;">
+                <div class="exp-icon">🍽️</div>
+                <h3>Darbar Dining</h3>
+                <p>Feast on authentic Rajasthani Thalis prepared by generational palace chefs.</p>
+            </div>
+            <div class="exp-card reveal" style="transition-delay: 0.4s;">
+                <div class="exp-icon">🐪</div>
+                <h3>Desert Safari</h3>
+                <p>Embark on twilight camel excursions through the dunes, concluding with a folk performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="book">
+        <div class="booking-wrap reveal">
+            <form id="bookingForm">
+    <div class="form-grid">
+        <div>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required placeholder="e.g. Om Sathe">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required placeholder="om@example.com">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" required placeholder="+91">
+            </div>
+        </div>
+        
+        <div>
+            <div class="form-group">
+                <label for="suite">Select Suite</label>
+                <select id="suite" required>
+                    <option value="" disabled selected>Choose your sanctuary...</option>
+                    <option value="The Maharaja Suite">The Maharaja Suite</option>
+                    <option value="Rajputana Deluxe">Rajputana Deluxe</option>
+                    <option value="Mughal Courtyard">Mughal Courtyard</option>
+                </select>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="form-group">
+                    <label for="checkin">Check In</label>
+                    <input type="date" id="checkin" required>
+                </div>
+                <div class="form-group">
+                    <label for="checkout">Check Out</label>
+                    <input type="date" id="checkout" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="requests">Special Requests (Optional)</label>
+                <input type="text" id="requests" placeholder="Airport transfer, dietary needs...">
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn-gold">Secure Reservation</button>
+</form>
+        </div>
+    </section>
+
+    <footer>
+        <a href="#" class="footer-logo">HERITAGE</a>
+        <div class="footer-details">
+            <p>Lake Palace Road, Udaipur, Rajasthan, India</p>
+            <p>Reservations: +91 98765 43210 | Concierge: palace@royalheritage.com</p>
+            <p style="margin-top: 40px; font-size: 0.8rem; font-family: 'Montserrat', sans-serif; opacity: 0.5;">© 2026 The Royal Heritage. Designed for Royalty.</p>
+        </div>
+    </footer>
+
+    <script>
+    // 1. Scroll Reveal Logic
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 100;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal();
+
+    // 2. Sticky Navbar Logic
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+
+    // 3. Date Validation Logic
+    const checkInInput = document.getElementById('checkin');
+    const checkOutInput = document.getElementById('checkout');
+    const today = new Date().toISOString().split('T')[0];
+    
+    checkInInput.setAttribute('min', today);
+    
+    checkInInput.addEventListener('change', function() {
+        let nextDay = new Date(this.value);
+        nextDay.setDate(nextDay.getDate() + 1);
+        let nextDayString = nextDay.toISOString().split('T')[0];
+        checkOutInput.setAttribute('min', nextDayString);
+        if(checkOutInput.value && checkOutInput.value <= this.value) {
+            checkOutInput.value = nextDayString;
+        }
+    });
+
+    // 4. Fetch API to send data to PHP
+    document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        submitBtn.innerText = "Processing...";
+
+        // Gather data from inputs (Ensure your HTML inputs have these IDs)
+        const bookingData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            suite: document.getElementById('suite').value,
+            checkin: document.getElementById('checkin').value,
+            checkout: document.getElementById('checkout').value,
+            requests: document.getElementById('requests').value
+        };
+
+        try {
+            const response = await fetch('process.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(bookingData)
+            });
+
+            const result = await response.json();
+            
+            if(result.status === 'success') {
+                alert("Namaste! Your royal reservation is secured.");
+                e.target.reset(); // Clear form
+            } else {
+                alert("Apologies, there was an issue securing your reservation.");
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert("Connection error. Please try again.");
+        } finally {
+            submitBtn.innerText = "Secure Reservation";
+        }
+    });
+</script>
+</body>
+</html>
